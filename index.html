@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boss Battle Simulator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #333;
+        }
+        canvas {
+            display: block;
+            background-color: #ffffff;
+			border:2px solid green
+        }
+        #ui {
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin-right: 20px;
+        }
+        .stats {
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 10px;
+			font-size: 12px;
+        }
+        #equipmentGrid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(5, 1fr);
+            grid-gap: 10px;
+            margin-left: 20px;
+        }
+		/* Base styles for equipment slots */
+		.equipmentSlot {
+			width: 80px;
+			height: 80px;
+			background-color: #555;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			border: 2px solid #777; /* Default border */
+			color: white;
+			font-size: 12px;
+			text-align: center;
+			border-radius: 10px;
+			cursor: pointer;
+			position: relative; /* Needed for tooltip */
+		}
+
+		/* Highlight equipped items */
+		.equipped {
+			border: 2px solid gold; /* Gold border for equipped items */
+		}
+
+		/* Unequipped items have a darker border */
+		.unequipped {
+			border-color: #444;
+		}
+
+		/* Rarity-based coloring */
+		.common {
+			background-color: #9E9E9E; /* Gray for common */
+			color: black;
+		}
+
+		.rare {
+			background-color: #4A90E2; /* Blue for rare */
+			color: white;
+		}
+
+		.epic {
+			background-color: #B28BE3; /* Purple for epic */
+			color: white;
+		}
+
+		.legendary {
+			background-color: #FFB400; /* Gold for legendary */
+			color: black;
+		}
+
+		/* Tooltip styles */
+		.tooltip {
+			position: absolute;
+			background-color: #222;
+			color: #fff;
+			padding: 10px;
+			border-radius: 5px;
+			font-size: 12px;
+			display: none; /* Hidden by default */
+			z-index: 1000;
+			pointer-events: none; /* Prevent blocking hover interaction */
+			white-space: nowrap;  /* Ensure tooltip doesn't break into multiple lines */
+			box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5); /* Adds a shadow for better visibility */
+		}
+
+		.equipmentSlot:hover .tooltip {
+			display: block; /* Show the tooltip on hover */
+		}
+
+
+		.equipped {
+			border: 2px solid gold; /* Highlight equipped items */
+		}
+		
+		        /* Button styles */
+        .upgrade-button {
+            display: inline-block;
+            background-color: #555;
+            color: white;
+            border: 2px solid #777;
+            border-radius: 5px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        .upgrade-button:hover {
+            background-color: #777;
+        }
+
+        .upgrade-button:active {
+            background-color: #444;
+        }
+
+        .upgrade-container {
+            margin-top: 20px;
+        }
+
+    </style>
+</head>
+<body onload="loadGame()">
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="ui">
+        <div class="stats">
+            <p><strong>Player HP:</strong> <span id="playerHp"></span></p>
+            <p><strong>Player Damage:</strong> <span id="playerDamage"></span></p>
+            <p><strong>Player Defense:</strong> <span id="playerDefense"></span></p>
+        </div>
+        <div class="stats">
+            <p><strong>Boss HP:</strong> <span id="bossHp"></span></p>
+            <p><strong>Boss Phase:</strong> <span id="phase"></span></p>
+        </div>
+        <div class="stats">
+            <p><strong>Spirit Shards:</strong> <span id="currency"></span></p>
+        </div>
+		<div class="upgrade-container">
+            <button class="upgrade-button" id="strengthUpgrade" onclick="upgrade('attack')">Strength</button>
+            <button class="upgrade-button" id="toughnessUpgrade" onclick="upgrade('defense')">Toughness</button>
+            <button class="upgrade-button" id="vitalityUpgrade" onclick="upgrade('hp')">Vitality</button>
+        </div>
+    </div>
+    
+    <!-- Equipment Grid -->
+    <div id="equipmentGrid">
+        <!-- Grid will dynamically populate -->
+    </div>
+	<script src="misc.js"></script>
+    <script src="equipment.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>
