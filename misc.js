@@ -107,6 +107,7 @@ function loadGame () {
 	player.currency = retrievedPlayer.currency;
 	player.upgrade = retrievedPlayer.upgrade;
 	resetPlayer();
+	if (!player.deathCount) {player.deathCount = 0;} else {player.deathCount = retrievedPlayer.deathCount;}
 	updateUI();
 }
 

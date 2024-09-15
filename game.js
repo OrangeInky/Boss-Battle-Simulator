@@ -6,6 +6,7 @@ const phaseElement = document.getElementById('phase');
 const playerHpElement = document.getElementById('playerHp');
 const playerDamageElement = document.getElementById('playerDamage');
 const playerDefenseElement = document.getElementById('playerDefense');
+const playerDeathCount = document.getElementById('deathCount')
 
 const attackRadius = 60;
 
@@ -114,6 +115,7 @@ function updateUI() {
     playerHpElement.textContent = beautify(player.hp);
     playerDamageElement.textContent = beautify(player.attack*(player.upgrade['attack']/10+1));
     playerDefenseElement.textContent = beautify(player.defense*(player.upgrade['defense']/10+1));
+	playerDeathCount.textContent = player.deathCount;
 	player.updateEquipmentDisplay();
 	updateUpgradeDisplay();
 }
@@ -179,6 +181,7 @@ function gameLoop() {
         if (player.hp <= 0) {
 			resetBoss();
 			resetPlayer();
+			player.deathCount++;
 			updateUI();
         }
     }

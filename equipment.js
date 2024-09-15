@@ -79,6 +79,7 @@ class Player {
 			defense: 0,
 			hp: 0,
 		}
+		this.deathCount = 0;
 
         // Inventory to store all collected equipment
         this.inventory = [];
