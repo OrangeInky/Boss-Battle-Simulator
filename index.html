@@ -134,6 +134,19 @@
         .upgrade-container {
             margin-top: 20px;
         }
+		#controls {
+		  position: absolute;
+		  bottom: 10px;
+		  left: 10px;
+		}
+
+		.control-btn {
+		  width: 60px;
+		  height: 60px;
+		  font-size: 20px;
+		  margin: 5px;
+		}
+
 
     </style>
 </head>
@@ -158,6 +171,13 @@
             <button class="upgrade-button" id="toughnessUpgrade" onclick="upgrade('defense')">Toughness</button>
             <button class="upgrade-button" id="vitalityUpgrade" onclick="upgrade('hp')">Vitality</button>
         </div>
+			<div id="controls">
+	  <button id="up" class="control-btn">Up</button><br>
+	  <button id="left" class="control-btn">Left</button>
+	  <button id="down" class="control-btn">Down</button>
+	  <button id="right" class="control-btn">Right</button>
+			</div>
+
     </div>
     
     <!-- Equipment Grid -->

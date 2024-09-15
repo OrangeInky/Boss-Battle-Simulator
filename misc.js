@@ -192,3 +192,21 @@ function updateUpgradeDisplay() {
         });
     });
 }
+
+
+// Mobile Support
+
+function isMobileDevice() {
+  return /Mobi|Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+function toggleControls() {
+  const controls = document.getElementById('controls');
+  if (isMobileDevice()) {
+    controls.style.display = 'block'; // Show controls on mobile devices
+  } else {
+    controls.style.display = 'none';  // Hide controls on desktop devices
+  }
+}
+
+toggleControls(); // Call the function on page load

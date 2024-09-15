@@ -230,3 +230,39 @@ gameLoop();
 player.updateEquipmentDisplay()
 updateUI()
 updateUpgradeDisplay()
+
+document.getElementById('up').addEventListener('touchstart', () => player.y -= player.speed);
+document.getElementById('down').addEventListener('touchstart', () => player.y += player.speed);
+document.getElementById('left').addEventListener('touchstart', () => player.x -= player.speed);
+document.getElementById('right').addEventListener('touchstart', () => player.x += player.speed);
+
+let isTouching = {
+  up: false,
+  down: false,
+  left: false,
+  right: false
+};
+
+document.getElementById('up').addEventListener('touchstart', () => isTouching.up = true);
+document.getElementById('up').addEventListener('touchend', () => isTouching.up = false);
+
+document.getElementById('down').addEventListener('touchstart', () => isTouching.down = true);
+document.getElementById('down').addEventListener('touchend', () => isTouching.down = false);
+
+document.getElementById('left').addEventListener('touchstart', () => isTouching.left = true);
+document.getElementById('left').addEventListener('touchend', () => isTouching.left = false);
+
+document.getElementById('right').addEventListener('touchstart', () => isTouching.right = true);
+document.getElementById('right').addEventListener('touchend', () => isTouching.right = false);
+
+// Update player position continuously based on touch input
+function updatePlayerPosition() {
+  if (isTouching.up) player.y -= player.speed;
+  if (isTouching.down) player.y += player.speed;
+  if (isTouching.left) player.x -= player.speed;
+  if (isTouching.right) player.x += player.speed;
+
+  requestAnimationFrame(updatePlayerPosition);
+}
+
+updatePlayerPosition();
